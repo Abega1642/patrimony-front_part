@@ -1,0 +1,47 @@
+/* Styles généraux */
+.welcome-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.welcome-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .welcome-container {
+        padding: 40px;
+    }
+    
+    .welcome-card {
+        max-width: 600px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .welcome-card {
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.welcome-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
