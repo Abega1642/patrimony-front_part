@@ -6,6 +6,7 @@ import getMonthlyDates from '../../functions_constants/chartAbcisse';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { FaChartLine, FaCalendarDay, FaCalendarAlt, FaSearch, FaExclamationTriangle } from 'react-icons/fa';
 import DayPicker from './DayPicker';
+import './chart.css';
 
 function useDate(monthsAhead) {
     const [date, setDate] = useState(() => {
@@ -35,11 +36,11 @@ function LineChart() {
 
         const newErrors = {};
         if (end < minEndDate) {
-            newErrors.endDate = "Veuillez sélectionner une date distante d'au moins un mois de la date de début.";
+            newErrors.endDate = "Veuillez sélectionner une date distante d'au moins un mois de la date de début (Une date future).";
         }
         setErrors(newErrors);
 
-        setTimeout(() => setErrors({}), 5500);
+        setTimeout(() => setErrors({}), 6000);
 
         return Object.keys(newErrors).length === 0;
     }
@@ -93,18 +94,51 @@ function LineChart() {
         ],
     };
 
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
+                    },
+                },
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    autoSkip: true,
+                    maxRotation: 45,
+                    minRotation: 45,
+                },
+            },
+            y: {
+                ticks: {
+                    callback: function(value) {
+                        return value.toLocaleString();
+                    },
+                },
+            },
+        },
+    };
+
     return (
-        <Container fluid className='py-5' style={{ backgroundColor: '#f9f9f9' }}>
+        <Container fluid className='py-5'>
             <Row className='mb-4'>
                 <Col md={12} lg={6} className='mx-auto'>
                     <Card className='shadow-lg rounded-lg border-0 mb-4'>
-                        <Card.Body>
-                            <h3 className='text-center mb-4 text-primary'>
+                        <Card.Body className='card-body'>
+                            <h3 className='chart-header'>
                                 <FaChartLine className='me-2' />
                                 Graphique des Valeurs de Patrimoine
                             </h3>
-                            <div className='bg-white p-4 rounded shadow-sm'>
-                                <Line data={data} />
+                            <div className='chart-container'>
+                                <Line data={data} options={options} />
                             </div>
                         </Card.Body>
                     </Card>
@@ -114,16 +148,16 @@ function LineChart() {
             <Row className='mb-4'>
                 <Col md={12} lg={6} className='mx-auto'>
                     <Card className='shadow-lg rounded-lg border-0 mb-4'>
-                        <Card.Body>
-                            <h3 className='text-center mb-4 text-primary'>
+                        <Card.Body className='card-body'>
+                            <h3 className='chart-header'>
                                 <FaCalendarAlt className='me-2' />
-                                Observer l`Évolution de Votre Patrimoine
+                                Observer l’Évolution de Votre Patrimoine
                             </h3>
                             <Form>
                                 <Form.Group className='mb-3'>
                                     <Form.Label className='d-flex align-items-center'>
                                         <FaCalendarDay className='me-2 text-primary' />
-                                        Sélectionner le début de l`évolution :
+                                        Sélectionner le début de l’évolution :
                                     </Form.Label>
                                     <Form.Control
                                         type="date"
@@ -135,7 +169,7 @@ function LineChart() {
                                 <Form.Group className='mb-3'>
                                     <Form.Label className='d-flex align-items-center'>
                                         <FaCalendarDay className='me-2 text-primary' />
-                                        Sélectionner la fin de l`évolution :
+                                        Sélectionner la fin de l’évolution :
                                     </Form.Label>
                                     <Form.Control
                                         type="date"
@@ -155,7 +189,7 @@ function LineChart() {
                                 <Form.Group className='mb-3'>
                                     <Form.Label className='d-flex align-items-center'>
                                         <FaCalendarDay className='me-2 text-primary' />
-                                        Sélectionner la jour de l`évolution :
+                                        Sélectionner la jour de l’évolution :
                                     </Form.Label>
                                     <DayPicker setDate={setDay}/>
                                 </Form.Group>
@@ -166,7 +200,7 @@ function LineChart() {
                                             onClick={getCurve}
                                         >
                                             <FaSearch className='me-2' />
-                                            Voir l`Évolution
+                                            Voir l’Évolution
                                         </Button>
                                     </div>
                                 </Form>
