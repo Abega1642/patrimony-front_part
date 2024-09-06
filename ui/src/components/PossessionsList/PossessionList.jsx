@@ -21,7 +21,7 @@ export function PossessionsList() {
     async function close(index) {
         try {
             const libelle = possessions[index].libelle;
-            const response = await fetch(`${BASE_URL}/possession/:${libelle}/close`, {
+            const response = await fetch(`${BASE_URL}/possession/${libelle}/close`, {
                 method: 'PATCH',
             });
             if (!response.ok) {
@@ -34,7 +34,7 @@ export function PossessionsList() {
     }
 
     const update = (lib) => {
-        navigate(`/possession/:${lib}/update`);
+        navigate(`/possession/${lib}/update`);
     }
     
     useEffect(() => {
