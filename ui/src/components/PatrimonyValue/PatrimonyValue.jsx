@@ -11,7 +11,7 @@ function PatrimonyValue() {
 
     useEffect(() => {
         async function fetchDatas() {
-            const response = await fetch(BASE_URL + '/patrimoine/:' + `${new Date().toISOString().split('T')[0]}`);
+            const response = await fetch(BASE_URL + '/patrimoine/' + `${new Date().toISOString().split('T')[0]}`);
             const result = await response.json();
             setPatrimonyValueAtNow(result.value);
         }
@@ -20,7 +20,7 @@ function PatrimonyValue() {
 
     useEffect(() => {
         async function fetchDatas2() {
-            const response = await fetch(BASE_URL + '/patrimoine/:' + `${evaluationDate.toISOString().split('T')[0]}`);
+            const response = await fetch(BASE_URL + '/patrimoine/' + `${evaluationDate.toISOString().split('T')[0]}`);
             const result = await response.json();
             setPatrimonyValueAtSelectedDate(result.value);
         }
