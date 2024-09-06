@@ -96,9 +96,9 @@ function AddPossession() {
 
     return (
         <main className="main bg-light py-5">
-            <div className="container mb-8 w-75">
+            <div className="container mb-8 w-100 w-md-75">
                 <div className="row justify-content-center">
-                    <aside className="card col-md-8">
+                    <aside className="card col-lg-8 col-md-10 col-12">
                         <div className="card-body p-4 rounded shadow-lg bg-white">
                             <h3 className="text-center mb-4 text-primary font-weight-bold">
                                 ✨ Ajouter une Nouvelle Possession
@@ -174,7 +174,7 @@ function AddPossession() {
                                 <label className="form-label d-flex align-items-center">
                                     <FaExclamationTriangle className="me-2" /> Type :
                                 </label>
-                                <div className="d-flex gap-2">
+                                <div className="d-flex flex-wrap gap-2">
                                     <FluxRadio checked={isChecked("Flux-entrant")} name="Flux-entrant" onChange={handleTypeChange} />
                                     <FluxRadio checked={isChecked("Flux-sortant")} name="Flux-sortant" onChange={handleTypeChange} />
                                     <FluxRadio checked={isChecked("Autres")} name="Autres" onChange={handleTypeChange} />
@@ -205,9 +205,9 @@ function AddPossession() {
                                     </div>}
                                 </div>
                             )}
-                            <div className="text-center mt-4">
+                            <div className="text-center mt-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
                                 <button 
-                                    className="btn btn-success btn-lg shadow-sm me-2"
+                                    className="btn btn-success btn-lg shadow-sm"
                                     onClick={addPossession}
                                 >
                                     <FaDollarSign className="me-2" /> Ajouter
