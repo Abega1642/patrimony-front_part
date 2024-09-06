@@ -84,12 +84,12 @@ i {
     position: fixed;
     left: 0;
     top: 0;
-    height: 65vh;
+    height: 60vh;
     width: 14dvw;
     background-color: #f8f9fa;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    margin-block: 10dvh;
+    margin-block: 15dvh;
 
   }
   
